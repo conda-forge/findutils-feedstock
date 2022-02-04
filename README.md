@@ -178,6 +178,3 @@ Feedstock Maintainers
 * [@jonashaag](https://github.com/jonashaag/)
 * [@karl616](https://github.com/karl616/)
 
-
-<!-- dummy commit to enable rerendering -->
-
