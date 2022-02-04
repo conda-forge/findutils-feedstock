@@ -53,6 +53,13 @@ Current build status
                 </a>
               </td>
             </tr><tr>
+              <td>linux_ppc64le</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=301&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/findutils-feedstock?branchName=master&jobName=linux&configuration=linux_ppc64le_" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
               <td>osx_64</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=301&branchName=master">
@@ -161,5 +168,6 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
+* [@jonashaag](https://github.com/jonashaag/)
 * [@karl616](https://github.com/karl616/)
 
