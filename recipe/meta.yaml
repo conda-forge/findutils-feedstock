@@ -1,29 +1,15 @@
-{% set name = "findutils" %}
-{% set version = "4.6.0" %}
-{% set sha256 = "ded4c9f73731cd48fec3b6bdaccce896473b6d8e337e9612e16cf1431bb1169d" %}
+{% set version = "4.9.0" %}
 
 package:
-  name: {{ name|lower }}
+  name: findutils
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
-  url: https://ftp.gnu.org/gnu/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
-  #patches taken from the Fedora fc28 rpm build process
-  #https://src.fedoraproject.org/cgit/rpms/findutils.git/plain/<<patch name>>?id=97ba2d7a
-  patches:
-    - findutils-4.6.0-mbrtowc-tests.patch
-    - findutils-4.6.0-gnulib-fflush.patch
-    - findutils-4.6.0-man-exec.patch
-    - findutils-4.6.0-exec-args.patch
-    - findutils-4.6.0-gnulib-makedev.patch
-    - findutils-4.6.0-internal-noop.patch
-    - findutils-4.6.0-test-lock.patch
-    - findutils-4.6.0-leaf-opt.patch
+  url: https://ftp.gnu.org/gnu/findutils/findutils-{{ version }}.tar.gz
+  sha256: ded4c9f73731cd48fec3b6bdaccce896473b6d8e337e9612e16cf1431bb1169d
 
 build:
-  number: 1001
+  number: 0
   skip: true  # [win]
   script_env:
     - TMPDIR
@@ -31,13 +17,14 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
+    - {{ stdlib('c') }}
     - make
-    - gettext
+    - gettext-tools
     - autoconf
     - automake
     - texinfo
   run:
-    - gettext
+    - libintl-dev  # [osx]
 
 test:
   commands:
@@ -52,8 +39,7 @@ test:
 
 about:
   home: https://www.gnu.org/software/findutils/
-  license: GPL-3.0
-  license_family: GPL
+  license: GPL-3.0-or-later
   license_file: COPYING
   summary: |
     The GNU Find Utilities are the basic directory searching utilities of
@@ -65,7 +51,9 @@ about:
     the GNU operating system. These programs are typically used in conjunction
     with other programs to provide modular and powerful directory search and
     file locating capabilities to other commands.
+
 extra:
   recipe-maintainers:
+    - danielnachun
     - karl616
     - jonashaag
