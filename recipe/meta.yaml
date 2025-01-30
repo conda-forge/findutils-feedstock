@@ -22,6 +22,7 @@ requirements:
     - automake
     - sed
     - texinfo
+    - xz-tools
   run:
     - libintl-devel  # [osx]
 
