@@ -1,18 +1,16 @@
-{% set version = "4.9.0" %}
+{% set version = "4.10.0" %}
 
 package:
   name: findutils
   version: {{ version }}
 
 source:
-  url: https://ftp.gnu.org/gnu/findutils/findutils-{{ version }}.tar.gz
-  sha256: ded4c9f73731cd48fec3b6bdaccce896473b6d8e337e9612e16cf1431bb1169d
+  url: https://ftp.gnu.org/gnu/findutils/findutils-{{ version }}.tar.xz
+  sha256: 1387e0b67ff247d2abde998f90dfbf70c1491391a59ddfecb8ae698789f0a4f5
 
 build:
   number: 0
   skip: true  # [win]
-  script_env:
-    - TMPDIR
 
 requirements:
   build:
@@ -24,7 +22,7 @@ requirements:
     - automake
     - texinfo
   run:
-    - libintl-dev  # [osx]
+    - libintl-devel  # [osx]
 
 test:
   commands:
