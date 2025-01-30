@@ -20,6 +20,7 @@ requirements:
     - gettext-tools
     - autoconf
     - automake
+    - sed
     - texinfo
   run:
     - libintl-devel  # [osx]
