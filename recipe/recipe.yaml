@@ -23,6 +23,7 @@ requirements:
     - gettext-tools
     - autoconf
     - automake
+    - python >= ${{ python_min }}
     - sed
     - texinfo
     - xz-tools
