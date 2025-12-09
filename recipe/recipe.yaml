@@ -1,56 +1,63 @@
-{% set version = "4.10.0" %}
+schema_version: 1
+
+context:
+  version: 4.10.0
 
 package:
   name: findutils
-  version: {{ version }}
+  version: ${{ version }}
 
 source:
-  url: https://ftp.gnu.org/gnu/findutils/findutils-{{ version }}.tar.xz
+  url: https://ftp.gnu.org/gnu/findutils/findutils-${{ version }}.tar.xz
   sha256: 1387e0b67ff247d2abde998f90dfbf70c1491391a59ddfecb8ae698789f0a4f5
 
 build:
-  number: 0
-  skip: true  # [win]
+  number: 1
+  skip: win
 
 requirements:
   build:
-    - {{ compiler('c') }}
-    - {{ stdlib('c') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
     - make
     - gettext-tools
     - autoconf
     - automake
+    - python >= ${{ python_min }}
     - sed
     - texinfo
     - xz-tools
-  run:
-    - libintl-devel  # [osx]
+  host:
+    - if: osx
+      then: libintl-devel
 
-test:
-  commands:
-    - find --version
-    - find --help
-    - locate --version
-    - locate --help
-    - updatedb --version
-    - updatedb --help
-    - xargs --version
-    - xargs --help
+tests:
+  - script:
+      - find --version
+      - find --help
+      - locate --version
+      - locate --help
+      - updatedb --version
+      - updatedb --help
+      - xargs --version
+      - xargs --help
 
 about:
-  home: https://www.gnu.org/software/findutils/
   license: GPL-3.0-or-later
   license_file: COPYING
   summary: |
     The GNU Find Utilities are the basic directory searching utilities of
     the GNU operating system.
-  doc_url: https://www.gnu.org/software/findutils/manual/find.html
-  dev_url: http://savannah.gnu.org/projects/findutils/
   description: |
     The GNU Find Utilities are the basic directory searching utilities of
     the GNU operating system. These programs are typically used in conjunction
     with other programs to provide modular and powerful directory search and
     file locating capabilities to other commands.
+
+
+  homepage: https://www.gnu.org/software/findutils/
+  repository: http://savannah.gnu.org/projects/findutils/
+  documentation: https://www.gnu.org/software/findutils/manual/find.html
 
 extra:
   recipe-maintainers:
