@@ -17,6 +17,21 @@ if [[ ${target_platform} == "linux-aarch64" || ${target_platform} == "linux-ppc6
     sed -i '/tests\/xargs\/conflicting_opts/d' tests/local.mk
 fi
 
+if [[ ${target_platform} =~ .*osx.* ]]; then
+    sed -i '/c32isalnum/d' gnulib-tests/Makefile.am
+    sed -i '/c32isalpha/d' gnulib-tests/Makefile.am
+    sed -i '/c32isgraph/d' gnulib-tests/Makefile.am
+    sed -i '/c32islower/d' gnulib-tests/Makefile.am
+    sed -i '/c32isprint/d' gnulib-tests/Makefile.am
+    sed -i '/c32ispunct/d' gnulib-tests/Makefile.am
+    sed -i '/c32isspace/d' gnulib-tests/Makefile.am
+    sed -i '/c32isupper/d' gnulib-tests/Makefile.am
+    sed -i '/c32tolower/d' gnulib-tests/Makefile.am
+    sed -i 's/test-fnmatch-[0-9].sh//g' gnulib-tests/Makefile.am
+    sed -i 's/test-nl_langinfo\-mt//g' gnulib-tests/Makefile.am
+    sed -i 's/test-nl_langinfo\-mt.sh//g' gnulib-tests/Makefile.am
+fi
+
 autoreconf --force --verbose --install
 ./configure --prefix="$PREFIX" --disable-dependency-tracking
 make -j${CPU_COUNT}

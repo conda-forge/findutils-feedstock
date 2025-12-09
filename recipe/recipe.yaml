@@ -27,7 +27,7 @@ requirements:
     - sed
     - texinfo
     - xz-tools
-  run:
+  host:
     - if: osx
       then: libintl-devel
 
