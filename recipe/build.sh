@@ -2,6 +2,8 @@
 
 set -o xtrace -o nounset -o pipefail -o errexit
 
+export PYTHON="${BUILD_PREFIX}/bin/python"
+
 # Disable failing/irrelevant tests
 sed -i '/TESTS += test-vc-list-files-cvs.sh/d' gnulib-tests/Makefile.am
 sed -i 's/test-vc-list-files-git.sh test-vc-list-files-cvs.sh/test-vc-list-files-cvs.sh/' gnulib-tests/Makefile.am
